@@ -43,7 +43,7 @@ const ChannelScreen = () => {
     if (status === 'rejected') {
       return <Text style={styles.error}>{error}</Text>;
     }
-    return <List data={data} />;
+    return <List data={data} onPressHandler={onPressHandler} />;
   };
 
   return (

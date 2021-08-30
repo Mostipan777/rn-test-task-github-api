@@ -5,11 +5,16 @@ import {theme} from '../../common/theme';
 
 interface ListProps {
   data: any[];
+  onPressHandler: () => void;
 }
-const List: React.FC<ListProps> = ({data}) => {
+const List: React.FC<ListProps> = ({data, onPressHandler}) => {
   const [isRefreshing] = useState(false);
 
-  const onRefreshHandler = () => {};
+  const onRefreshHandler = () => {
+    setTimeout(() => {
+      onPressHandler();
+    }, 1000);
+  };
 
   const Item = ({item}: Record<string, any>) => {
     return (
@@ -34,7 +39,7 @@ const List: React.FC<ListProps> = ({data}) => {
         refreshControl={
           <RefreshControl
             refreshing={isRefreshing}
-            onRefresh={onRefreshHandler}
+            onRefresh={() => onRefreshHandler()}
             title="Pull to refresh"
             tintColor={theme.secondaryColor}
             titleColor={theme.secondaryColor}
