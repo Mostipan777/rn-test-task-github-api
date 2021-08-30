@@ -13,7 +13,9 @@ const history = createSlice({
   initialState,
   reducers: {
     addEvent: (state, action: PayloadAction<any>) => {
-      state.history.unshift(action.payload);
+      if (state.history[0] !== action.payload) {
+        state.history.unshift(action.payload);
+      }
     },
   },
 });
